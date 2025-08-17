@@ -15,6 +15,10 @@ function addToLibrary(id, title, author, pages, isRead) {
     myLibrary.push(newBook)
 }   
 
+function displayBooks() {
+    
+}
+
 addToLibrary(crypto.randomUUID(), "The Catcher in the Rye", "J.D. Salinger", 304, false)
 addToLibrary(crypto.randomUUID(), "Atomic Habits", "James Clear", 320, true)
 addToLibrary(crypto.randomUUID(), "Ikigai: The Japanese Secret to a Long and Happy Life", "Hector Garcia, Francesc Miralles", 208, true)
