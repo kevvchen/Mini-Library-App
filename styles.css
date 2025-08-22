@@ -26,7 +26,7 @@ main {
   gap: 0.5rem;
 }
 
-#add-book-btn {
+#add-book-btn, .add-btn {
   font-size: 1rem;
   font-weight: bolder;
   background-color: #3943b7;
@@ -47,33 +47,112 @@ main {
 }
 
 .book-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 2px solid;
-    border-radius: 5px;
-    background-color: #fff;
-    padding: 1rem;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 1rem;
+  text-align: center;
 }
 
 .book-card > h3 {
-    font-size: 1rem;
-    margin-bottom: .25rem;
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: 0.25rem;
 }
 
 .book-card > h6 {
-    font-size: 0.8rem;
-    color: grey;
-    margin-bottom: 1rem;
+  font-size: 0.8rem;
+  color: grey;
+  margin-bottom: 1rem;
 }
 
 .book-card > p {
-    font-weight: bold;
-    margin-bottom: .45rem;
-    margin-top: auto;
+  font-weight: 700;
+  margin-bottom: 0.45rem;
+  margin-top: auto;
 }
 
-.book-buttons {
-    
+
+#form-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+#form-modal.hidden {
+  display: none;
+}
+
+#form-modal form {
+  border: 2px solid black;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.9);
+}
+
+#close-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: red;
+}
+
+fieldset {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  gap: 0.2rem;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.modal-header > legend {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.form-element {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.form-element > label {
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.form-element > input {
+  padding: 0.4rem;
+  border: none;
+  background-color: #dedad9;
+  border-radius: 5px;
+}
+
+.form-element-check {
+  flex-direction: row;
+  align-self: center;
+  gap: 0.5rem;
+}
+
+.form-element-check > label {
+  font-weight: 700;
+  font-size: 0.8rem;
 }
