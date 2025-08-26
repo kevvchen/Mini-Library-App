@@ -1,5 +1,8 @@
 const myLibrary = [];
 
+// Book container
+const bookContainer = document.querySelector(".books-section");
+
 // Book Constructor
 function Book(id, title, author, pages, isRead) {
   this.id = id;
@@ -13,6 +16,40 @@ function Book(id, title, author, pages, isRead) {
 function addToLibrary(id, title, author, pages, isRead) {
   const newBook = new Book(id, title, author, pages, isRead);
   myLibrary.push(newBook);
+
+  displayBook(myLibrary[myLibrary.length - 1], bookContainer);
+}
+
+// Creates the DOM nodes
+function displayBook(bookObj, parent) {
+  // Create Card Container
+  const bookCard = document.createElement("div");
+  bookCard.classList.add("book-card");
+
+  // Create book title
+  const bookTitle = document.createElement("h3");
+  bookTitle.textContent = `${bookObj.title}`;
+  bookCard.appendChild(bookTitle);
+
+  // Create book author
+  const bookAuthor = document.createElement("h6");
+  bookAuthor.textContent = `By ${bookObj.author}`;
+  bookCard.appendChild(bookAuthor);
+
+  // Create book pages
+  const bookPages = document.createElement("p");
+  bookPages.textContent = `${bookObj.pages} pages`;
+  bookCard.appendChild(bookPages);
+
+  // Create book buttons (isRead toggle button, delete book button)
+  const bookButtons = document.createElement("div");
+  bookButtons.classList.add("book-buttons");
+  const isReadButton = document.createElement("button");
+  isReadButton.textContent = `${bookObj.isRead ? "Read" : "Not Read"}`;
+  bookButtons.appendChild(isReadButton);
+  bookCard.appendChild(bookButtons);
+
+  parent.prepend(bookCard);
 }
 
 // Populate array with a couple of books so far
@@ -32,13 +69,9 @@ function initialTests() {
     208,
     true
   );
-
-  displayBooks();
 }
 
 function displayBooks() {
-  const bookContainer = document.querySelector(".books-section");
-
   // Go through each array and create DOM elements
   myLibrary.forEach((book) => {
     // Create Card Container
@@ -89,7 +122,7 @@ const closeBookBtn = document.getElementById("close-btn");
 closeBookBtn.addEventListener("click", closeModal);
 
 // Handle FormData
-const form = document.getElementById("form-modal");
+const form = document.getElementById("add-book-form");
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
@@ -98,4 +131,13 @@ form.addEventListener("submit", function (e) {
   const bookPages = document.getElementById("book_page_amount").value;
   const bookIsRead = document.getElementById("is_book_read").value;
 
+  addToLibrary(
+    crypto.randomUUID(),
+    bookTitle,
+    bookAuthor,
+    bookPages,
+    bookIsRead
+  );
+
+  form.reset();
 });
