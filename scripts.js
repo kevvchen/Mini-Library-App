@@ -74,3 +74,28 @@ function displayBooks() {
 
 initialTests();
 
+function showModal() {
+  document.getElementById("form-modal").classList.remove("hidden");
+}
+
+function closeModal() {
+  document.getElementById("form-modal").classList.add("hidden");
+}
+
+const addBookBtn = document.getElementById("add-book-btn");
+addBookBtn.addEventListener("click", showModal);
+
+const closeBookBtn = document.getElementById("close-btn");
+closeBookBtn.addEventListener("click", closeModal);
+
+// Handle FormData
+const form = document.getElementById("form-modal");
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const bookTitle = document.getElementById("book_title").value;
+  const bookAuthor = document.getElementById("book_author").value;
+  const bookPages = document.getElementById("book_page_amount").value;
+  const bookIsRead = document.getElementById("is_book_read").value;
+
+});
