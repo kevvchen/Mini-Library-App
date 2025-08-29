@@ -25,6 +25,7 @@ function displayBook(bookObj, parent) {
   // Create Card Container
   const bookCard = document.createElement("div");
   bookCard.classList.add("book-card");
+  bookCard.setAttribute("id", bookObj.id);
 
   // Create book title
   const bookTitle = document.createElement("h3");
@@ -44,13 +45,35 @@ function displayBook(bookObj, parent) {
   // Create book buttons (isRead toggle button, delete book button)
   const bookButtons = document.createElement("div");
   bookButtons.classList.add("book-buttons");
+
   const isReadButton = document.createElement("button");
-  isReadButton.textContent = `${bookObj.isRead ? "Read" : "Not Read"}`;
+  isReadButton.textContent = "READ";
+  isReadButton.classList.add("is-read-button");
+
+  const deleteButton = document.createElement("button");
+  deleteButton.classList.add("remove-button");
+
+  deleteButton.addEventListener("click", () =>
+    deleteBookCard(bookCard, bookObj.id)
+  );
+
   bookButtons.appendChild(isReadButton);
+  bookButtons.appendChild(deleteButton);
   bookCard.appendChild(bookButtons);
 
   parent.prepend(bookCard);
 }
+
+const deleteBookCard = (bookCardNode, bookId) => {
+  // Delete the DOM node
+  bookCardNode.remove();
+
+  // Delete the object in array -> Find index of the bookObject with this id
+  const index = myLibrary.findIndex((book) => book.id === bookId);
+  myLibrary.splice(index, 1);
+
+  console.log(myLibrary)
+};
 
 // Populate array with a couple of books so far
 function initialTests() {
