@@ -181,3 +181,11 @@ fieldset {
 .remove-button::before {
   content: url("/assets/icons/trash-2.svg");
 }
+
+.read {
+  background-color: green;
+}
+
+.not-read {
+  background-color: yellow;
+}

@@ -47,8 +47,13 @@ function displayBook(bookObj, parent) {
   bookButtons.classList.add("book-buttons");
 
   const isReadButton = document.createElement("button");
-  isReadButton.textContent = "READ";
-  isReadButton.classList.add("is-read-button");
+  isReadButton.textContent = `${bookObj.isRead ? "READ" : "NOT READ"}`;
+  isReadButton.classList.add(`${bookObj.isRead ? "read" : "not-read"}`);
+
+  isReadButton.addEventListener("click", () => {
+    toggleRead(isReadButton, ["read", "not-read"]);
+    bookObj.isRead = !bookObj.isRead;
+  });
 
   const deleteButton = document.createElement("button");
   deleteButton.classList.add("remove-button");
@@ -64,6 +69,17 @@ function displayBook(bookObj, parent) {
   parent.prepend(bookCard);
 }
 
+const toggleRead = (readBtn, isReadState) => {
+  isReadState.forEach((state) => {
+    readBtn.classList.toggle(state);
+    if (readBtn.classList.contains("read")) {
+      readBtn.textContent = "READ";
+    } else {
+      readBtn.textContent = "NOT READ";
+    }
+  });
+};
+
 const deleteBookCard = (bookCardNode, bookId) => {
   // Delete the DOM node
   bookCardNode.remove();
@@ -72,7 +88,7 @@ const deleteBookCard = (bookCardNode, bookId) => {
   const index = myLibrary.findIndex((book) => book.id === bookId);
   myLibrary.splice(index, 1);
 
-  console.log(myLibrary)
+  console.log(myLibrary);
 };
 
 // Populate array with a couple of books so far
@@ -152,7 +168,7 @@ form.addEventListener("submit", function (e) {
   const bookTitle = document.getElementById("book_title").value;
   const bookAuthor = document.getElementById("book_author").value;
   const bookPages = document.getElementById("book_page_amount").value;
-  const bookIsRead = document.getElementById("is_book_read").value;
+  const bookIsRead = document.getElementById('is_book_read').checked;
 
   addToLibrary(
     crypto.randomUUID(),
